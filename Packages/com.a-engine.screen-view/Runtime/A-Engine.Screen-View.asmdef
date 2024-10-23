@@ -1,0 +1,16 @@
+{
+    "name": "A-Engine.Screen-View",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d60206a5c7299d94ba884ed34b7e2b46"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
