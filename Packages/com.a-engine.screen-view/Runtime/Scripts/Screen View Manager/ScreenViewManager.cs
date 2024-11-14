@@ -4,8 +4,17 @@ using UnityEngine;
 
 namespace AEngine
 {
-    public class ScreenViewManager : MonoBehaviour
+    public partial class ScreenViewManager : MonoBehaviour
     {
+        private enum TransitionStates
+        {
+            None,
+            Default,
+            DevelopmentInitial,
+            DevelopmentBack,
+            Transition
+        }
+
         public static event OpenScreenView OnOpenScreenView;
         public static event DeactivateScreenView OnDeactivateScreenView;
         public static event CloseScreenView OnCloseScreenView;
@@ -14,33 +23,31 @@ namespace AEngine
         private static TransitionData transitionData;
         private static TransitionData developmentBackTransition;
 
+        private TransitionStates state = TransitionStates.None;
+        private static bool isInitialized;
+
         //==================================================
         // Fields
         //==================================================
 
         [SerializeField] private ScreenView defaultScreenView;
-
-        private bool isInitialized;
-
+        
         //==================================================
         // Properties
         //==================================================
 
         private string CurrentScene => SceneManager.GetActiveScene().name;
-
+        
         //==================================================
         // Methods
         //==================================================
 
         private void Awake()
         {
-            if (!isInitialized)
-            {
-                configuration = Resources.Load("Screen View Configuration") as ScreenViewConfiguration;
-                isInitialized = true;
-            }
+            ConfigureState();
+            Initialize();
         }
-
+                        
         private void Start()
         {
             OnDeactivateScreenView?.Invoke();

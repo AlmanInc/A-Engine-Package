@@ -5,12 +5,20 @@ namespace AEngine
     [CreateAssetMenu(menuName = "A-Engine/Screen View Configuration", fileName = "Screen View Configuration")]
     public class ScreenViewConfiguration : ScriptableObject
     {
+        //==================================================
+        // Fields
+        //==================================================
+
         [Header("Initial Scene Settings")]
         [SerializeField] private bool loadInitialScene;
         [SerializeField] private string initialScene;
         [SerializeField] private string initialScreenView;
-        
-        public bool LoadInitialScene => loadInitialScene;
+
+        //==================================================
+        // Properties
+        //==================================================
+
+        public bool NeedLoadInitialScene => loadInitialScene;
 
         public string InitialScene => initialScene;
 
